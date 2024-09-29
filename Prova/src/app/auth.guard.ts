@@ -11,11 +11,13 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     const isAuthenticated = this.authService.isAuthenticated(); // Verifica autenticazione
     console.log('User authenticated:', isAuthenticated); // Log per debug
+
     if (isAuthenticated) {
       return true; // L'utente è autenticato
     } else {
-      this.router.navigate(['/login']); // Reindirizza al login se non autenticato
-      return false;
+      // Reindirizza al login se non autenticato
+      this.router.navigate(['/login']);
+      return false; // Blocca l'accesso alla rotta
     }
   }
 }
