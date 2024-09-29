@@ -13,7 +13,7 @@ export class LoginComponent {
   password: string = '';
   loginAttempts: number = 0; // Contatore dei tentativi di login
   maxAttempts: number = 5; // Numero massimo di tentativi consentiti
-  lockoutTime: number = 300000; // Tempo di blocco in millisecondi (es. 5 minuti)
+  lockoutTime: number = 100000; // Tempo di blocco in millisecondi
   locked: boolean = false;
 
   constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
