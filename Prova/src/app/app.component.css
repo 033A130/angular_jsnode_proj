@@ -1,0 +1,55 @@
+/* welcome.component.css - Stile per la pagina di benvenuto */
+
+.welcome-container {
+    text-align: center; /* Centrato */
+    padding: 60px 20px; /* Padding per lo spazio */
+    background-color: #121212; /* Sfondo scuro */
+    color: #f5f5f5; /* Testo chiaro */
+    font-family: 'Poppins', sans-serif; /* Font moderno */
+    border-radius: 10px; /* Bordi arrotondati */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Ombra per profondità */
+    margin: 20px auto; /* Margine auto per centrare */
+    max-width: 600px; /* Larghezza massima per una migliore visualizzazione */
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* Dimensione del font */
+    margin-bottom: 15px; /* Margine inferiore */
+    position: relative;
+    display: inline-block; /* Per il posizionamento dell'elemento */
+    padding-bottom: 10px; /* Padding per spazio sotto il titolo */
+  }
+  
+  h1::after {
+    content: '';
+    display: block;
+    width: 80px; /* Larghezza della linea decorativa */
+    height: 4px; /* Altezza della linea decorativa */
+    background-color: #007bff; /* Colore della linea decorativa */
+    margin: 10px auto 0; /* Margine automatico */
+    border-radius: 2px; /* Bordi arrotondati per la linea */
+  }
+  
+  p {
+    font-size: 1.2rem; /* Dimensione del testo */
+    margin: 20px 0; /* Margine per separare il testo e il bottone */
+  }
+  
+  .btn-navigate {
+    background-color: #007bff; /* Colore blu per il bottone */
+    color: white; /* Testo bianco */
+    padding: 12px 25px; /* Padding per rendere il bottone più grande */
+    font-size: 1.2rem; /* Dimensione del testo per il bottone */
+    border-radius: 50px; /* Bordi arrotondati */
+    border: none; /* Rimuove il bordo */
+    cursor: pointer; /* Mostra il puntatore al passaggio del mouse */
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.2); /* Ombra per effetto di profondità */
+    transition: background-color 0.3s ease, transform 0.2s; /* Transizioni fluide */
+  }
+  
+  .btn-navigate:hover {
+    background-color: #0056b3; /* Colore più scuro al passaggio del mouse */
+    transform: translateY(-3px); /* Spostamento verso l'alto al hover */
+    box-shadow: 0 12px 20px rgba(0, 123, 255, 0.3); /* Ombra maggiore al hover */
+  }
+  
