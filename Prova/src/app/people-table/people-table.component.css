@@ -1,8 +1,13 @@
 /* people-table.component.css */
+h2 {
+  color: white;
+}
 
 table {
+  color: white;
   width: 100%;
   border-collapse: collapse; /* Unisce i bordi delle celle */
+  background-color: rgba(0, 0, 0, 0.57);
 }
 
 th, td {
@@ -39,32 +44,31 @@ th, td {
 
 /* Pulsante Elimina */
 .delete-button {
-  background-color: #dc3545; /* Rosso */
+  background-color: #b0009c; /* Rosso */
 }
 
 .delete-button:hover {
-  background-color: #c82333;
+  background-color: #e500ac;
   transform: translateY(-2px);
 }
 
 /* Pulsante Salva */
 .save-button {
-  background-color: #28a745; /* Verde */
+  background-color: #105e21f1;
 }
 
 .save-button:hover {
-  background-color: #218838;
+  background-color: #199734f1;
   transform: translateY(-2px);
 }
 
 /* Pulsante Annulla */
 .cancel-button {
-  background-color: #f8d7da; /* Rosso chiaro */
-  color: #721c24; /* Testo rosso scuro */
+  background-color: #121212;
 }
 
 .cancel-button:hover {
-  background-color: #f5c6cb;
+  background-color: #ff00008d;
   transform: translateY(-2px);
 }
 
