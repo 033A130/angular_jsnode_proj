@@ -21,7 +21,7 @@ export class PeopleTableComponent implements OnInit {
   loadPeople() {
     this.http.get<any[]>(this.apiUrl).subscribe(
       (data) => {
-        this.people = data.map(person => ({ ...person, isEditing: false })); // Assicurati che 'isEditing' sia false
+        this.people = data.map(person => ({ ...person, isEditing: false }));
       },
       (error) => {
         console.error('Errore nel caricamento delle persone:', error);
@@ -42,7 +42,7 @@ export class PeopleTableComponent implements OnInit {
 
   saveNewPerson() {
     if (!this.isFormValid(this.newPerson)) {
-      alert('Inserire tutti i campi!');
+      alert('Inserire tutti i campi correttamente!');
       return;
     }
     this.http.post(this.apiUrl, this.newPerson).subscribe(
@@ -67,12 +67,12 @@ export class PeopleTableComponent implements OnInit {
   savePerson(index: number) {
     const person = this.people[index];
     if (!this.isFormValid(person)) {
-      alert('Inserire tutti i campi!');
+      alert('Inserire tutti i campi correttamente!');
       return;
     }
     this.http.put(`${this.apiUrl}/${person.id}`, person).subscribe(
       () => {
-        person.isEditing = false; // Disattiva la modalità di modifica dopo il salvataggio
+        person.isEditing = false;
         this.loadPeople();
       },
       (error) => {
@@ -82,21 +82,55 @@ export class PeopleTableComponent implements OnInit {
   }
 
   cancelEdit(index: number) {
-    this.people[index].isEditing = false; // Disattiva la modifica senza salvare
+    this.people[index].isEditing = false;
   }
 
   deletePerson(id: number) {
-    this.http.delete(`${this.apiUrl}/${id}`).subscribe(
-      () => {
-        this.loadPeople();
-      },
-      (error) => {
-        console.error('Errore nella cancellazione:', error);
+    const personToDelete = this.people.find(person => person.id === id);
+    if (personToDelete) {
+      const confirmation = confirm('Sei sicuro di voler eliminare ' + personToDelete.nome + ' ' + personToDelete.cognome + '?');
+      if (confirmation) {
+        this.http.delete(`${this.apiUrl}/${id}`).subscribe(
+          () => {
+            this.loadPeople();
+          },
+          (error) => {
+            console.error('Errore nella cancellazione:', error);
+          }
+        );
       }
-    );
+    }
   }
 
   isFormValid(person: any) {
-    return person.nome && person.cognome && person.eta && person.email && person.codiceFiscale;
+    // Controlla che tutti i campi siano presenti
+    if (!person.nome || !person.cognome || !person.eta || !person.email || !person.codiceFiscale) {
+      return false;
+    }
+
+    // Controllo per Nome e Cognome: solo lettere e spazi
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (!namePattern.test(person.nome) || !namePattern.test(person.cognome)) {
+      return false;
+    }
+
+    // Controllo per Età: deve essere un numero positivo
+    if (isNaN(person.eta) || person.eta <= 0) {
+      return false;
+    }
+
+    // Controllo per Email: deve avere un formato valido
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(person.email)) {
+      return false;
+    }
+
+    // Controllo per Codice Fiscale: stringa di lunghezza massima 16, composta da lettere maiuscole e numeri
+    const cfPattern = /^[A-Z0-9]{1,16}$/;
+    if (!cfPattern.test(person.codiceFiscale)) {
+      return false;
+    }
+
+    return true; // Tutti i controlli sono passati
   }
 }

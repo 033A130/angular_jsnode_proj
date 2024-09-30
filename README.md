@@ -28,6 +28,7 @@ Questo progetto Angular include una serie di implementazioni avanzate e professi
 ### Funzionalità:
 - Durante l'aggiunta di una nuova persona, è obbligatorio compilare **tutti i campi richiesti** prima che l'utente possa salvare la nuova voce.
 - I dati incompleti non possono essere inviati o salvati.
+- Ogni campo deve essere inserito solo della specifica richiesta, ad esempio: Nome e Cognome sono solo stringhe, Età solo numero e quindi no lettere o caratterispeciali, Email deve avere per forza un percorso mail(es. example.com) e il codice fiscale è una stringa di lunghezza massima 16 composta da lettere maiuscole e numeri.
 
 ### Implementazione:
 - Validazioni implementate a livello di componente per garantire che non si possano aggiungere persone con campi vuoti o incompleti.
@@ -36,6 +37,7 @@ Questo progetto Angular include una serie di implementazioni avanzate e professi
 
 ### Funzionalità:
 - Tutti gli utenti, compresi quelli già presenti, possono essere eliminati tramite un'opzione di eliminazione dedicata. Nessun utente è escluso dalla possibilità di essere rimosso dal sistema.
+- Viene richiesta conferma di eliminazione, mostrando Nome e Cognome della persona interessata da rimuovere.
 
 ### Implementazione:
 - Aggiunta dell'opzione di **eliminazione globale** disponibile per ogni voce della tabella.

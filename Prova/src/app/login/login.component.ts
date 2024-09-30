@@ -30,6 +30,12 @@ export class LoginComponent {
       return;
     }
 
+    // Verifica se l'username è valido (escludendo caratteri speciali)
+    if (!this.isValidUsername(this.username)) {
+      alert('Il nome utente non può contenere caratteri speciali!');
+      return;
+    }
+
     // Chiamata al server per verificare le credenziali
     this.http.get<any[]>(`http://localhost:3000/users?username=${this.username}&password=${this.password}`)
       .subscribe({
@@ -57,6 +63,12 @@ export class LoginComponent {
           alert('Errore di connessione, riprova più tardi');
         }
       });
+  }
+
+  // Funzione per validare l'username
+  isValidUsername(username: string): boolean {
+    const regex = /^[a-zA-Z0-9]+$/; // Solo lettere e numeri
+    return regex.test(username);
   }
 
   // Funzione per disconnettere l'utente
