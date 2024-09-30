@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { AuthGuard } from './auth.guard'; // Assicurati che sia 'AuthGuard' e non 'authGuard'
+import { AuthGuard } from './auth.guard'; 
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
@@ -17,7 +17,7 @@ describe('AuthGuard', () => {
       providers: [
         AuthGuard,
         { provide: Router, useValue: routerMock },
-        { provide: AuthService, useValue: { isAuthenticated: () => true } }
+        { provide: AuthService, useValue: { isLoggedIn: () => true } } // Modificato il mock qui
       ]
     });
     guard = TestBed.inject(AuthGuard);
@@ -30,12 +30,12 @@ describe('AuthGuard', () => {
   });
 
   it('should allow activation when authenticated', () => {
-    spyOn(authService, 'isAuthenticated').and.returnValue(true);
+    spyOn(authService, 'isLoggedIn').and.returnValue(true); // Assicurati di spiare il metodo corretto
     expect(guard.canActivate()).toBe(true);
   });
 
   it('should redirect when not authenticated', () => {
-    spyOn(authService, 'isAuthenticated').and.returnValue(false);
+    spyOn(authService, 'isLoggedIn').and.returnValue(false); // Assicurati di spiare il metodo corretto
     guard.canActivate();
     expect(router.navigate).toHaveBeenCalledWith(['/login']);
   });

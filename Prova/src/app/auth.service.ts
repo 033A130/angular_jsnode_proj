@@ -4,34 +4,31 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private expirationTime: number | null = null;
+  private loggedIn = false; // Stato di autenticazione
 
-  // Verifica se l'utente è autenticato
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('auth_token');
-    return !!token && this.isTokenValid();
-  }
+  constructor() {}
 
-  // Funzione di login
+  // Funzione per effettuare il login
   login(token: string): void {
-    localStorage.setItem('auth_token', token); // Salva il token nel localStorage
-    this.setTokenExpiration();
+    this.loggedIn = true;
+    // Qui puoi aggiungere la logica per salvare il token, ad esempio in localStorage
+    localStorage.setItem('authToken', token);
   }
 
-  // Imposta il tempo di scadenza del token a 60 secondi
-  private setTokenExpiration(): void {
-    this.expirationTime = Date.now() + 60000; // 60 secondi in millisecondi
-  }
-
-  // Controlla se il token è valido
-  private isTokenValid(): boolean {
-    if (this.expirationTime === null) return false;
-    return Date.now() < this.expirationTime; // Verifica se il tempo attuale è prima della scadenza
-  }
-
-  // Funzione di logout
+  // Funzione per effettuare il logout
   logout(): void {
-    localStorage.removeItem('auth_token'); // Rimuove il token dal localStorage
-    this.expirationTime = null; // Resetta il tempo di scadenza
+    this.loggedIn = false;
+    // Rimuovi il token dal localStorage
+    localStorage.removeItem('authToken');
+  }
+
+  // Funzione per verificare se l'utente è autenticato
+  isAuthenticated(): boolean {
+    return this.loggedIn; // Restituisce lo stato di autenticazione
+  }
+
+  // Metodo pubblico per ottenere lo stato di login
+  public isLoggedIn(): boolean {
+    return this.loggedIn; // Restituisce il valore della proprietà loggedIn
   }
 }

@@ -1,29 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';  // Necessario per [(ngModel)]
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-
+import { AppRoutingModule } from './app-routing.module';  // Routing configurato
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 import { PeopleTableComponent } from './people-table/people-table.component';
-import { AuthGuard } from './auth.guard'; // Importa il guardiano
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
     PeopleTableComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,   // Per gestire [(ngModel)]
+    HttpClientModule  // Per chiamate HTTP
   ],
-  providers: [AuthGuard], // Aggiungi AuthGuard ai provider
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

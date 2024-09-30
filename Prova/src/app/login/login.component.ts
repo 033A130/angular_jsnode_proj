@@ -13,7 +13,7 @@ export class LoginComponent {
   password: string = '';
   loginAttempts: number = 0; // Contatore dei tentativi di login
   maxAttempts: number = 5; // Numero massimo di tentativi consentiti
-  lockoutTime: number = 100000; // Tempo di blocco in millisecondi
+  lockoutTime: number = 180000; // Tempo di blocco in millisecondi (3 minuti)
   locked: boolean = false;
 
   constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
@@ -35,7 +35,8 @@ export class LoginComponent {
       .subscribe({
         next: users => {
           if (users.length > 0) {
-            this.authService.login('1234567890'); // In un'app reale, questo sarebbe un vero token
+            // Presumiamo che l'ID utente o il token sia da prendere in qualche modo dal server
+            this.authService.login(users[0].id); // Usa l'ID dell'utente come token
             this.router.navigate(['/people']); // Reindirizza alla pagina protetta
           } else {
             this.loginAttempts++;
@@ -65,6 +66,6 @@ export class LoginComponent {
   }
 
   navigateToHome() {
-    this.router.navigate(['/']);
+    this.router.navigate(['home']);
   }
 }

@@ -1,86 +1,85 @@
-/* people-table.component.css - Miglioramenti alla tabella delle persone */
+/* people-table.component.css */
 
-.people-table-container {
-    padding: 40px;
-    background-color: #121212;
-    color: #f5f5f5;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-  }
-  
-  h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: #007bff;
-    margin: 10px auto;
-    border-radius: 2px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #1e1e1e;
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #555;
-  }
-  
-  th {
-    background-color: #333;
-    color: #f5f5f5;
-  }
-  
-  td {
-    color: #ddd;
-  }
-  
-  tr:hover {
-    background-color: #444;
-  }
-  
-  button {
-    padding: 8px 15px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .btn-edit {
-    background-color: #11ab70;
-    color: white;
-  }
-  
-  .btn-save {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .btn-cancel {
-    background-color: #ff6f61;
-    color: white;
-  }
-  
-  .btn-delete {
-    background-color: red;
-    color: white;
-  }
-  
-  button:hover {
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-    transform: translateY(-3px); /* Spostamento verso l'alto */
-  }
-  
+table {
+  width: 100%;
+  border-collapse: collapse; /* Unisce i bordi delle celle */
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd; /* Bordo grigio chiaro per le celle */
+}
+
+.add-button, .edit-button, .save-button, .cancel-button, .delete-button, .logout-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover per i pulsanti comuni */
+.add-button:hover, .edit-button:hover, .save-button:hover, .cancel-button:hover, .logout-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Pulsante Aggiungi */
+.add-button {
+  background-color: #28a745; /* Verde */
+  margin-bottom: 15px; /* Margine inferiore per separare dalla tabella */
+}
+
+.add-button:hover {
+  background-color: #218838; /* Verde scuro al hover */
+}
+
+/* Pulsante Elimina */
+.delete-button {
+  background-color: #dc3545; /* Rosso */
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Pulsante Salva */
+.save-button {
+  background-color: #28a745; /* Verde */
+}
+
+.save-button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Pulsante Annulla */
+.cancel-button {
+  background-color: #f8d7da; /* Rosso chiaro */
+  color: #721c24; /* Testo rosso scuro */
+}
+
+.cancel-button:hover {
+  background-color: #f5c6cb;
+  transform: translateY(-2px);
+}
+
+/* Margini per separare i pulsanti Modifica ed Elimina */
+.edit-button {
+  margin-right: 10px; /* Aggiungi margine destro per separare */
+}
+
+/* Margini per i pulsanti Salva e Annulla nella modalità Aggiungi */
+.save-button,
+.cancel-button {
+  margin-right: 10px; /* Spazio tra Salva e Annulla */
+}
+
+/* Margine superiore per separare i pulsanti Aggiungi dalla tabella */
+.logout-button {
+  margin-top: 20px;
+}

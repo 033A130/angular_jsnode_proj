@@ -6,7 +6,7 @@ import { PeopleTableComponent } from './people-table/people-table.component';
 import { AuthGuard } from './auth.guard';  // Importa la guardia
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },  // Rotta per la home
+  { path: 'home', component: HomeComponent },  // Rotta per la home
   { path: 'login', component: LoginComponent },  // Rotta per il login
   { path: 'people', component: PeopleTableComponent, canActivate: [AuthGuard] }, // Proteggi la rotta con AuthGuard
   { path: '**', redirectTo: '/' } // Rotta di fallback

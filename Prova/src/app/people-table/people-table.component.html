@@ -1,5 +1,6 @@
 <h2>Lista di Persone</h2>
 <button class="add-button" (click)="addPerson()">Aggiungi</button>
+
 <table>
   <thead>
     <tr>
@@ -14,30 +15,41 @@
   <tbody>
     <tr *ngFor="let person of people; let i = index">
       <td>
-        <input *ngIf="person.isEditing" [(ngModel)]="person.nome" />
+        <input *ngIf="person.isEditing" [(ngModel)]="person.nome" required pattern="[a-zA-Z ]*" placeholder="Nome" />
         <span *ngIf="!person.isEditing">{{ person.nome }}</span>
       </td>
       <td>
-        <input *ngIf="person.isEditing" [(ngModel)]="person.cognome" />
+        <input *ngIf="person.isEditing" [(ngModel)]="person.cognome" required pattern="[a-zA-Z ]*" placeholder="Cognome" />
         <span *ngIf="!person.isEditing">{{ person.cognome }}</span>
       </td>
       <td>
-        <input *ngIf="person.isEditing" [(ngModel)]="person.eta" type="number" />
+        <input *ngIf="person.isEditing" [(ngModel)]="person.eta" type="number" required placeholder="Età" />
         <span *ngIf="!person.isEditing">{{ person.eta }}</span>
       </td>
       <td>
-        <input *ngIf="person.isEditing" [(ngModel)]="person.email" />
+        <input *ngIf="person.isEditing" [(ngModel)]="person.email" required email placeholder="Email" />
         <span *ngIf="!person.isEditing">{{ person.email }}</span>
       </td>
       <td>
-        <input *ngIf="person.isEditing" [(ngModel)]="person.codiceFiscale" />
+        <input *ngIf="person.isEditing" [(ngModel)]="person.codiceFiscale" required pattern="[a-zA-Z0-9]{16}" placeholder="Codice Fiscale" />
         <span *ngIf="!person.isEditing">{{ person.codiceFiscale }}</span>
       </td>
       <td>
         <button class="edit-button" (click)="editPerson(i)" *ngIf="!person.isEditing">Modifica</button>
-        <button class="save-button" (click)="savePerson(i)" *ngIf="person.isEditing">Salva</button>
+        <button class="save-button" (click)="savePerson(i)" *ngIf="person.isEditing" [disabled]="!isFormValid(person)">Salva</button>
         <button class="cancel-button" (click)="cancelEdit(i)" *ngIf="person.isEditing">Annulla</button>
-        <button class="delete-button" (click)="deletePerson(i)">Elimina</button>
+        <button class="delete-button" (click)="deletePerson(person.id)">Elimina</button>
+      </td>
+    </tr>
+    <tr *ngIf="isAddingNewPerson">
+      <td><input [(ngModel)]="newPerson.nome" required pattern="[a-zA-Z ]*" placeholder="Nome" /></td>
+      <td><input [(ngModel)]="newPerson.cognome" required pattern="[a-zA-Z ]*" placeholder="Cognome" /></td>
+      <td><input [(ngModel)]="newPerson.eta" type="number" required placeholder="Età" /></td>
+      <td><input [(ngModel)]="newPerson.email" required email placeholder="Email" /></td>
+      <td><input [(ngModel)]="newPerson.codiceFiscale" required pattern="[a-zA-Z0-9]{16}" placeholder="Codice Fiscale" /></td>
+      <td>
+        <button class="save-button" (click)="saveNewPerson()" [disabled]="!isFormValid(newPerson)">Salva</button>
+        <button class="cancel-button" (click)="cancelAdding()">Annulla</button>
       </td>
     </tr>
   </tbody>
