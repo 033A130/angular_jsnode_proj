@@ -6,6 +6,7 @@ Questo progetto Angular include una serie di implementazioni avanzate e professi
 
 ### Funzionalità:
 - Dopo **5 tentativi falliti di login**, l'utente dovrà attendere **1,67 minuti reali** prima di poter tentare nuovamente l'accesso.
+
 - Durante il periodo di attesa, **le credenziali non saranno valide** e l'utente non potrà bypassare l'attesa anche se ricarica la pagina.
 - Questa misura previene attacchi di forza bruta e assicura un controllo rigoroso dei tentativi di login.
 
