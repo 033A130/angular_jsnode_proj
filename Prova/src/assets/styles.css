@@ -1,0 +1,12 @@
+/* src/styles.css o src/styles.scss */
+
+body {
+    background-image: url('assets/1727688537463.webp');
+    background-size: cover; /* Rende l'immagine a tutto schermo */
+    background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+    background-position: center; /* Centra l'immagine */
+    height: 100vh; /* Assicura che copra l'intera altezza del viewport */
+    margin: 0;
+    font-family: Arial, sans-serif; /* Opzionale: definisce il font */
+  }
+  
