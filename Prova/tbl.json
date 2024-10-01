@@ -15,7 +15,8 @@
       "eta": 28,
       "email": "anna.bianchi@example.com",
       "codiceFiscale": "BNCNNN28A01H501Z",
-      "id": "3"
+      "id": "3",
+      "isEditing": true
     },
     {
       "nome": "Carla",
@@ -23,7 +24,8 @@
       "eta": 35,
       "email": "carla.neri@example.com",
       "codiceFiscale": "NRICRL35A01H501Z",
-      "id": "4"
+      "id": "4",
+      "isEditing": true
     },
     {
       "nome": "Paolo",
@@ -49,7 +51,8 @@
       "eta": 22,
       "email": "laura.rosa@example.com",
       "codiceFiscale": "RSALRA22A01H501Z",
-      "id": "8"
+      "id": "8",
+      "isEditing": true
     },
     {
       "nome": "Sara",

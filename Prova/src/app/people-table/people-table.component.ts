@@ -41,8 +41,9 @@ export class PeopleTableComponent implements OnInit {
   }
 
   saveNewPerson() {
-    if (!this.isFormValid(this.newPerson)) {
-      alert('Inserire tutti i campi correttamente!');
+    const { isValid, errorFields } = this.isFormValid(this.newPerson);
+    if (!isValid) {
+      alert('I campi con errori sono: ' + errorFields.join(', '));
       return;
     }
     this.http.post(this.apiUrl, this.newPerson).subscribe(
@@ -66,8 +67,9 @@ export class PeopleTableComponent implements OnInit {
 
   savePerson(index: number) {
     const person = this.people[index];
-    if (!this.isFormValid(person)) {
-      alert('Inserire tutti i campi correttamente!');
+    const { isValid, errorFields } = this.isFormValid(person);
+    if (!isValid) {
+      alert('I campi con errori sono: ' + errorFields.join(', '));
       return;
     }
     this.http.put(`${this.apiUrl}/${person.id}`, person).subscribe(
@@ -102,35 +104,29 @@ export class PeopleTableComponent implements OnInit {
     }
   }
 
-  isFormValid(person: any) {
-    // Controlla che tutti i campi siano presenti
-    if (!person.nome || !person.cognome || !person.eta || !person.email || !person.codiceFiscale) {
-      return false;
-    }
+  isFormValid(person: any): { isValid: boolean, errorFields: string[] } {
+    const errorFields: string[] = [];
+
+    // Controllo per campi vuoti
+    if (!person.nome) errorFields.push('Nome');
+    if (!person.cognome) errorFields.push('Cognome');
+    if (!person.eta || person.eta <= 0) errorFields.push('Età');
+    if (!person.email) errorFields.push('Email');
+    if (!person.codiceFiscale) errorFields.push('Codice Fiscale');
 
     // Controllo per Nome e Cognome: solo lettere e spazi
     const namePattern = /^[A-Za-z\s]+$/;
-    if (!namePattern.test(person.nome) || !namePattern.test(person.cognome)) {
-      return false;
-    }
-
-    // Controllo per Età: deve essere un numero positivo
-    if (isNaN(person.eta) || person.eta <= 0) {
-      return false;
-    }
+    if (person.nome && !namePattern.test(person.nome)) errorFields.push('Nome');
+    if (person.cognome && !namePattern.test(person.cognome)) errorFields.push('Cognome');
 
     // Controllo per Email: deve avere un formato valido
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailPattern.test(person.email)) {
-      return false;
-    }
+    if (person.email && !emailPattern.test(person.email)) errorFields.push('Email');
 
     // Controllo per Codice Fiscale: stringa di lunghezza massima 16, composta da lettere maiuscole e numeri
     const cfPattern = /^[A-Z0-9]{1,16}$/;
-    if (!cfPattern.test(person.codiceFiscale)) {
-      return false;
-    }
+    if (person.codiceFiscale && !cfPattern.test(person.codiceFiscale)) errorFields.push('Codice Fiscale');
 
-    return true; // Tutti i controlli sono passati
+    return { isValid: errorFields.length === 0, errorFields };
   }
 }
