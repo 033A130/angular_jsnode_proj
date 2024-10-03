@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service'; // Assicurati che il percorso sia corretto
+import * as CryptoJS from 'crypto-js'; // Importa la libreria crypto-js
 
 @Component({
   selector: 'app-login',
@@ -36,8 +37,11 @@ export class LoginComponent {
       return;
     }
 
+    // Hash della password in SHA-256 prima di inviare al server
+    const hashedPassword = CryptoJS.SHA256(this.password).toString();
+
     // Chiamata al server per verificare le credenziali
-    this.http.get<any[]>(`http://localhost:3000/users?username=${this.username}&password=${this.password}`)
+    this.http.get<any[]>(`http://localhost:3000/users?username=${this.username}&password=${hashedPassword}`)
       .subscribe({
         next: users => {
           if (users.length > 0) {
