@@ -1,12 +1,8 @@
 {
   "users": [
     {
-      "username": "admin",
-      "password": "password1234"
-    },
-    {
-      "username": "user1",
-      "password": "mypassword1"
+      "username": "user",
+      "password_hash": "03ac674216f3e15c761ee1a5e255f067e9816ff9aa19dcf957bf2f6f6b7d28e8"
     }
   ]
 }
