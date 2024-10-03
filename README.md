@@ -11,7 +11,7 @@ Questo progetto Angular include una serie di implementazioni avanzate e professi
 - Questa misura previene attacchi di forza bruta e assicura un controllo rigoroso dei tentativi di login.
 
 ### Implementazione:
-- Logica implementata in `login.component.ts` per gestire il blocco temporaneo degli utenti dopo tentativi falliti.
+- Logica implementata in `login.component.ts` per gestire il blocco temporaneo degli utenti dopo tentativi falliti e implementazione della crittografia SHA256 per le credenziali.
 
 ## 2. Sicurezza delle Tabelle dei Dati
 
@@ -67,61 +67,3 @@ Questo progetto Angular include una serie di implementazioni avanzate e professi
 ## Conclusioni
 
 Queste implementazioni mirano a migliorare la sicurezza, l'efficienza e l'usabilità complessiva del progetto, assicurando che il sistema sia robusto, facile da usare e resistente a potenziali attacchi. Ogni aspetto è stato curato con attenzione per offrire un'esperienza utente fluida e una gestione efficace dei dati.
-
-# Struttura
-
-    Prova
-        .angular
-        .vscode
-        node_modules
-        public
-        src
-            app
-                father
-                home
-                    home.component.css
-                    home.component.html
-                    home.component.spec.ts
-                    home.component.ts
-                list-clients
-                    list-clients.component.css
-                    list-clients.component.html
-                    list-clients.component.spec.ts
-                    list-clients.component.ts
-                login
-                    login.component.css
-                    login.component.html
-                    login.component.spec.ts
-                    login.component.ts
-                people-table
-                    people-table.component.css
-                    people-table.component.html
-                    people-table.component.spec.ts
-                    people-table.component.ts
-                son
-                app-routing.module.ts
-                app.component.css
-                app.component.html
-                app.component.spec.ts
-                app.component.ts
-                app.module.server.ts
-                app.module.ts
-                auth.guard.spec.ts
-                auth.guard.ts
-                auth.service.spec.ts
-                auth.service.ts
-            assets
-            index.html
-            main.server.ts
-            main.ts
-            styles.css
-        .editorconfig
-        .gitignore
-        angular.json
-        db.json
-        package-lock.json
-        package.json
-        tsserver.json
-        tsconfig.app.json
-        tsconfig.json
-        tsconfig.spec.json
